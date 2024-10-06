@@ -3,6 +3,11 @@ require "test_helper"
 class TransactionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @transaction = transactions(:one)
+
+    post session_url, params: {
+      email_address: users(:admin).email_address,
+      password: "Testtest123"
+    }
   end
 
   test "should get index" do

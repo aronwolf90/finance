@@ -3,6 +3,12 @@ require "application_system_test_case"
 class TransactionsTest < ApplicationSystemTestCase
   setup do
     @transaction = transactions(:one)
+
+    visit new_session_url
+    fill_in "email_address", with: users(:admin).email_address
+    fill_in "password", with: "Testtest123"
+    click_on "Sign in"
+    assert_selector "h1", text: "Transactions"
   end
 
   test "visiting the index" do
